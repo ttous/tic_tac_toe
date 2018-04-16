@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="utf-8">
+        <title>Tic Tac Toe</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="https://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="tictactoe.css">
+    </header>
+    <body>
+        <!-- scripts -->
+        <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <script src="tictactoe.js"></script>
+
+        <div id="tic-tac-toe">
+            <div class="span3 new_span">
+                <div class="row">
+                    <h1 class="span3">Tic Tac Toe</h1>
+                    <div class="span3">
+                        <div class="input-prepend input-append">
+                            <span class="add-on win_text">Toi</span><strong id="visitor_win" class="win_times add-on">0</strong>
+                        </div>
+                        <div class="input-prepend input-append">
+                            <span class="add-on win_text">Pepper</span><strong id="pepper_win" class="win_times add-on">0</strong>
+                        </div>
+                    </div>
+                </div>
+                <ul class="row" id="game">
+                    <li id="tile1" class="btn span1" >+</li>
+                    <li id="tile2" class="btn span1">+</li>
+                    <li id="tile3" class="btn span1">+</li>
+                    <li id="tile4" class="btn span1">+</li>
+                    <li id="tile5" class="btn span1">+</li>
+                    <li id="tile6" class="btn span1">+</li>
+                    <li id="tile7" class="btn span1">+</li>
+                    <li id="tile8" class="btn span1">+</li>
+                    <li id="tile9" class="btn span1">+</li>
+                </ul>
+                <div class="clr">&nbsp;</div>
+                <div class="row"><a href="#" id="reset" class="btn-info btn span3">Remise à zéro</a></div>
+            </div>
+        </div>
+        <div id=game-messages>
+            <div id=game-messages-text>
+            </div>
+            <br />
+            <button id="game-messages-button" class="btn">OK</button>
+        </div>
+    </body>
+</html>

@@ -137,6 +137,12 @@ $(document).ready(function() {
                 !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
                 $("#tile7").hasClass(visitor) && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper)))
 
+            //// B&W
+            // 143, 163
+
+            //// Zorro
+            // 271
+
             // DECIDE WHAT TO PLAY
             var to_play; // Tile number to play
 
@@ -164,7 +170,7 @@ $(document).ready(function() {
             else if (los_456_6 || los_369_6) to_play = 6
             else if (los_789_8 || los_258_8) to_play = 8
 
-            else if (los_456_5 || los_258_5 || los_159_5 || los__357_5) to_play = 5
+            else if (los_456_5 || los_258_5 || los_159_5 || los_357_5) to_play = 5
 
             // Beginning of a match
             else if (all_tiles_empty) {
@@ -205,7 +211,7 @@ $(document).ready(function() {
             else {
                 availables = getAvailableTiles()
                 var rand = Math.random()*(availables.length - 1)
-                to_play = availables[Math.round(rand)];
+                to_play = availables[Math.round(rand)]
             }
 
             // PLAY

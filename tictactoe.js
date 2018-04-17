@@ -14,7 +14,15 @@ $(document).ready(function() {
             $(this).text(visitor)
             $(this).addClass('disable ' + visitor + ' btn-primary')
             count++
-            if ($("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor) || $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor) || $("#tile7").hasClass(visitor) && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(visitor) || $("#tile1").hasClass(visitor) && $("#tile4").hasClass(visitor) && $("#tile7").hasClass(visitor) || $("#tile2").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile8").hasClass(visitor) || $("#tile3").hasClass(visitor) && $("#tile6").hasClass(visitor) && $("#tile9").hasClass(visitor) || $("#tile1").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile9").hasClass(visitor) || $("#tile3").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile7").hasClass(visitor)) {
+            if ($("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor) ||
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor) ||
+                $("#tile7").hasClass(visitor) && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(visitor) ||
+                $("#tile1").hasClass(visitor) && $("#tile4").hasClass(visitor) && $("#tile7").hasClass(visitor) ||
+                $("#tile2").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile8").hasClass(visitor) ||
+                $("#tile3").hasClass(visitor) && $("#tile6").hasClass(visitor) && $("#tile9").hasClass(visitor) ||
+                $("#tile1").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile9").hasClass(visitor) ||
+                $("#tile3").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile7").hasClass(visitor))
+            {
                 popMessage('<span class="label label-success">Bravo</span> Vous avez gagné !')
                 visitor_win++
                 $('#visitor_win').text(visitor_win)
@@ -33,102 +41,136 @@ $(document).ready(function() {
         else {
             // ANALYZE SITUATION
             // Win situations
-            win123_1 = !$("#tile1").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper)
-            los123_1 = !$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor)
-            win123_2 = !$("#tile2").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile3").hasClass(pepper)
-            los123_2 = !$("#tile2").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile3").hasClass(visitor)
-            win123_3 = !$("#tile3").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper)
-            los123_3 = !$("#tile3").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor)
+            var win_123_1 = !$("#tile1").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper)
+            var los_123_1 = !$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor)
+            var win_123_2 = !$("#tile2").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile3").hasClass(pepper)
+            var los_123_2 = !$("#tile2").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile3").hasClass(visitor)
+            var win_123_3 = !$("#tile3").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper)
+            var los_123_3 = !$("#tile3").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor)
 
-            win456_4 = !$("#tile4").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper)
-            los456_4 = !$("#tile4").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor)
-            win456_5 = !$("#tile5").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile6").hasClass(pepper)
-            los456_5 = !$("#tile5").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile6").hasClass(visitor)
-            win456_6 = !$("#tile6").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            los456_6 = !$("#tile6").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_456_4 = !$("#tile4").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper)
+            var los_456_4 = !$("#tile4").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor)
+            var win_456_5 = !$("#tile5").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile6").hasClass(pepper)
+            var los_456_5 = !$("#tile5").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile6").hasClass(visitor)
+            var win_456_6 = !$("#tile6").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_456_6 = !$("#tile6").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
-            win789_7 = !$("#tile7").hasClass('disable') && $("#tile8").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            los789_7 = !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            win789_8 = !$("#tile8").hasClass('disable') && $("#tile7").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            los789_8 = !$("#tile8").hasClass('disable') && $("#tile7").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            win789_9 = !$("#tile9").hasClass('disable') && $("#tile7").hasClass(pepper) && $("#tile8").hasClass(pepper)
-            los789_9 = !$("#tile9").hasClass('disable') && $("#tile7").hasClass(visitor) && $("#tile8").hasClass(visitor)
+            var win_789_7 = !$("#tile7").hasClass('disable') && $("#tile8").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_789_7 = !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_789_8 = !$("#tile8").hasClass('disable') && $("#tile7").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_789_8 = !$("#tile8").hasClass('disable') && $("#tile7").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_789_9 = !$("#tile9").hasClass('disable') && $("#tile7").hasClass(pepper) && $("#tile8").hasClass(pepper)
+            var los_789_9 = !$("#tile9").hasClass('disable') && $("#tile7").hasClass(visitor) && $("#tile8").hasClass(visitor)
 
-            win147_1 = !$("#tile1").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            los147_1 = !$("#tile1").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            win147_4 = !$("#tile4").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            los147_4 = !$("#tile4").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            win147_7 = !$("#tile7").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile4").hasClass(pepper)
-            los147_7 = !$("#tile7").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile4").hasClass(visitor)
+            var win_147_1 = !$("#tile1").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_147_1 = !$("#tile1").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_147_4 = !$("#tile4").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_147_4 = !$("#tile4").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_147_7 = !$("#tile7").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile4").hasClass(pepper)
+            var los_147_7 = !$("#tile7").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile4").hasClass(visitor)
 
-            win258_2 = !$("#tile2").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile8").hasClass(pepper)
-            los258_2 = !$("#tile2").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile8").hasClass(visitor)
-            win258_5 = !$("#tile5").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile8").hasClass(pepper)
-            los258_5 = !$("#tile5").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile8").hasClass(visitor)
-            win258_8 = !$("#tile8").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            los258_8 = !$("#tile8").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_258_2 = !$("#tile2").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile8").hasClass(pepper)
+            var los_258_2 = !$("#tile2").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile8").hasClass(visitor)
+            var win_258_5 = !$("#tile5").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile8").hasClass(pepper)
+            var los_258_5 = !$("#tile5").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile8").hasClass(visitor)
+            var win_258_8 = !$("#tile8").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_258_8 = !$("#tile8").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
-            win369_3 = !$("#tile3").hasClass('disable') && $("#tile6").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            los369_3 = !$("#tile3").hasClass('disable') && $("#tile6").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            win369_6 = !$("#tile6").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            los369_6 = !$("#tile6").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            win369_9 = !$("#tile9").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile6").hasClass(pepper)
-            los369_9 = !$("#tile9").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile6").hasClass(visitor)
+            var win_369_3 = !$("#tile3").hasClass('disable') && $("#tile6").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_369_3 = !$("#tile3").hasClass('disable') && $("#tile6").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_369_6 = !$("#tile6").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_369_6 = !$("#tile6").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_369_9 = !$("#tile9").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile6").hasClass(pepper)
+            var los_369_9 = !$("#tile9").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile6").hasClass(visitor)
 
-            win159_1 = !$("#tile1").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            los159_1 = !$("#tile1").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            win159_5 = !$("#tile5").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            los159_5 = !$("#tile5").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            win159_9 = !$("#tile9").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            los159_9 = !$("#tile9").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_159_1 = !$("#tile1").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_159_1 = !$("#tile1").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_159_5 = !$("#tile5").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_159_5 = !$("#tile5").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_159_9 = !$("#tile9").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_159_9 = !$("#tile9").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
-            win357_3 = !$("#tile3").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            los357_3 = !$("#tile3").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            win357_5 = !$("#tile5").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            los357_5 = !$("#tile5").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            win357_7 = !$("#tile7").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            los357_7 = !$("#tile7").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_357_3 = !$("#tile3").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_357_3 = !$("#tile3").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_357_5 = !$("#tile5").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_357_5 = !$("#tile5").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_357_7 = !$("#tile7").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_357_7 = !$("#tile7").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
             // Empty situation
-            all_tiles_empty = !($("#tile1").hasClass('disable') || $("#tile2").hasClass('disable') || $("#tile3").hasClass('disable') || $("#tile4").hasClass('disable') || $("#tile5").hasClass('disable') || $("#tile6").hasClass('disable') || $("#tile7").hasClass('disable') || $("#tile8").hasClass('disable') || $("#tile9").hasClass('disable'))
+            var all_tiles_empty = !($("#tile1").hasClass('disable') || $("#tile2").hasClass('disable') || $("#tile3").hasClass('disable') ||
+                $("#tile4").hasClass('disable') || $("#tile5").hasClass('disable') || $("#tile6").hasClass('disable') ||
+                $("#tile7").hasClass('disable') || $("#tile8").hasClass('disable') || $("#tile9").hasClass('disable'))
 
             // Tactical win situations
             // TODO
+            //// Arrow
+            var arr_9 = (($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(visitor) &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ||
+                ($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                $("#tile7").hasClass(visitor) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable')))
+
+            var arr_7 = (($("#tile1").hasClass(visitor) && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ||
+                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(visitor)))
+
+            var arr_3 = (($("#tile1").hasClass(visitor) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ||
+                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(visitor)))
+
+            var arr_1 = ((!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(visitor) &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper))
+                ||
+                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
+                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                $("#tile7").hasClass(visitor) && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper)))
 
             // DECIDE WHAT TO PLAY
             var to_play; // Tile number to play
 
             // Pepper is going to win
-            if (win123_1 || win147_1 || win159_1) to_play = 1
-            else if (win123_3 || win369_3 || win357_3) to_play = 3
-            else if (win789_7 || win147_7 || win357_7) to_play = 7
-            else if (win789_9 || win369_9 || win159_9) to_play = 9
+            if (win_123_1 || win_147_1 || win_159_1) to_play = 1
+            else if (win_123_3 || win_369_3 || win_357_3) to_play = 3
+            else if (win_789_7 || win_147_7 || win_357_7) to_play = 7
+            else if (win_789_9 || win_369_9 || win_159_9) to_play = 9
 
-            else if (win123_2 || win258_2) to_play = 2
-            else if (win456_4 || win147_4) to_play = 4
-            else if (win456_6 || win369_6) to_play = 6
-            else if (win789_8 || win258_8) to_play = 8
+            else if (win_123_2 || win_258_2) to_play = 2
+            else if (win_456_4 || win_147_4) to_play = 4
+            else if (win_456_6 || win_369_6) to_play = 6
+            else if (win_789_8 || win_258_8) to_play = 8
 
-            else if (win456_5 || win258_5 || win159_5 || win357_5) to_play = 8
+            else if (win_456_5 || win_258_5 || win_159_5 || win_357_5) to_play = 5
 
             // Pepper is going to lose
-            else if (los123_1 || los147_1 || los159_1) to_play = 1
-            else if (los123_3 || los369_3 || los357_3) to_play = 3
-            else if (los789_7 || los147_7 || los357_7) to_play = 7
-            else if (los789_9 || los369_9 || los159_9) to_play = 9
+            else if (los_123_1 || los_147_1 || los_159_1) to_play = 1
+            else if (los_123_3 || los_369_3 || los_357_3) to_play = 3
+            else if (los_789_7 || los_147_7 || los_357_7) to_play = 7
+            else if (los_789_9 || los_369_9 || los_159_9) to_play = 9
 
-            else if (los123_2 || los258_2) to_play = 2
-            else if (los456_4 || los147_4) to_play = 4
-            else if (los456_6 || los369_6) to_play = 6
-            else if (los789_8 || los258_8) to_play = 8
+            else if (los_123_2 || los_258_2) to_play = 2
+            else if (los_456_4 || los_147_4) to_play = 4
+            else if (los_456_6 || los_369_6) to_play = 6
+            else if (los_789_8 || los_258_8) to_play = 8
 
-            else if (los456_5 || los258_5 || los159_5 || los357_5) to_play = 8
+            else if (los_456_5 || los_258_5 || los_159_5 || los__357_5) to_play = 5
 
             // Beginning of a match
             else if (all_tiles_empty) {
                 var rand = Math.random()*100
                 // Play a corner
-                if (rand < 60) {
+                if (rand < 80) {
                     var rand_bis = Math.random()*100
                     if (rand_bis < 25) to_play = 1
                     else if (rand_bis < 50) to_play = 3
@@ -136,7 +178,7 @@ $(document).ready(function() {
                     else to_play = 9
                 }
                 // Play an edge
-                else if (rand < 80) {
+                else if (rand < 90) {
                     var rand_bis = Math.random()*100
                     if (rand_bis < 25) to_play = 2
                     else if (rand_bis < 50) to_play = 4
@@ -148,9 +190,11 @@ $(document).ready(function() {
             }
 
             // Recognize a tactical win situation
-            else if (false) { // TODO
-
-            }
+            // TODO
+            else if (arr_1) to_play = 1
+            else if (arr_3) to_play = 3
+            else if (arr_7) to_play = 7
+            else if (arr_9) to_play = 9
 
             // Play center
             else if (!$("#tile5").hasClass('disable')){
@@ -168,7 +212,15 @@ $(document).ready(function() {
             $("#tile" + to_play).text(pepper)
             $("#tile" + to_play).addClass('disable ' + pepper + ' btn-warning')
             count++
-            if ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper) || $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper) || $("#tile7").hasClass(pepper) && $("#tile8").hasClass(pepper) && $("#tile9").hasClass(pepper) || $("#tile1").hasClass(pepper) && $("#tile4").hasClass(pepper) && $("#tile7").hasClass(pepper) || $("#tile2").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile8").hasClass(pepper) || $("#tile3").hasClass(pepper) && $("#tile6").hasClass(pepper) && $("#tile9").hasClass(pepper) || $("#tile1").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile9").hasClass(pepper) || $("#tile3").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile7").hasClass(pepper)) {
+            if ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper) ||
+                $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper) ||
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass(pepper) && $("#tile9").hasClass(pepper) ||
+                $("#tile1").hasClass(pepper) && $("#tile4").hasClass(pepper) && $("#tile7").hasClass(pepper) ||
+                $("#tile2").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile8").hasClass(pepper) ||
+                $("#tile3").hasClass(pepper) && $("#tile6").hasClass(pepper) && $("#tile9").hasClass(pepper) ||
+                $("#tile1").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile9").hasClass(pepper) ||
+                $("#tile3").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile7").hasClass(pepper))
+            {
                 popMessage('<span class="label label-important">Dommage</span> Vous avez perdu !')
                 pepper_win++
                 $('#pepper_win').text(pepper_win)

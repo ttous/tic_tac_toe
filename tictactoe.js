@@ -164,7 +164,7 @@ $(document).ready(function() {
             else if (los_456_6 || los_369_6) to_play = 6
             else if (los_789_8 || los_258_8) to_play = 8
 
-            else if (los_456_5 || los_258_5 || los_159_5 || los__357_5) to_play = 5
+            else if (los_456_5 || los_258_5 || los_159_5 || los_357_5) to_play = 5
 
             // Beginning of a match
             else if (all_tiles_empty) {

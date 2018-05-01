@@ -1,4 +1,4 @@
-#tic-tac-toe .disable
+#tic-tac-toe li:not(.available)
 {
     text-transform: uppercase;
 	font-size: 30px;
@@ -19,7 +19,7 @@
 	color: #ccc
 }
 
-#tic-tac-toe #game li.disable
+#tic-tac-toe #game li:not(.available)
 {
     color: #fff
 }

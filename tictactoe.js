@@ -2,17 +2,19 @@ $(document).ready(function() {
     var pepper = "x";
     var visitor = "o";
     var count = 0;
-    var pepperStarts = false;
+    var pepperStarts = true;
     var pepper_win = 0;
     var visitor_win = 0;
+    startMatch()
 
     $('#game li').click(function() {
-        if ($(this).hasClass('disable')) {
+        if (!$(this).hasClass('available')) {
             //alert('Already selected')
         }
         else {
             $(this).text(visitor)
-            $(this).addClass('disable ' + visitor + ' btn-primary')
+            $(this).addClass(visitor + ' btn-primary')
+            $(this).removeClass('available')
             count++
             if ($("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor) ||
                 $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor) ||
@@ -41,207 +43,204 @@ $(document).ready(function() {
         else {
             // ANALYZE SITUATION
             // Win situations
-            var win_123_1 = !$("#tile1").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper)
-            var los_123_1 = !$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor)
-            var win_123_2 = !$("#tile2").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile3").hasClass(pepper)
-            var los_123_2 = !$("#tile2").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile3").hasClass(visitor)
-            var win_123_3 = !$("#tile3").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper)
-            var los_123_3 = !$("#tile3").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor)
+            var win_123_1 = $("#tile1").hasClass('available') && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper)
+            var los_123_1 = $("#tile1").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(visitor)
+            var win_123_2 = $("#tile2").hasClass('available') && $("#tile1").hasClass(pepper) && $("#tile3").hasClass(pepper)
+            var los_123_2 = $("#tile2").hasClass('available') && $("#tile1").hasClass(visitor) && $("#tile3").hasClass(visitor)
+            var win_123_3 = $("#tile3").hasClass('available') && $("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper)
+            var los_123_3 = $("#tile3").hasClass('available') && $("#tile1").hasClass(visitor) && $("#tile2").hasClass(visitor)
 
-            var win_456_4 = !$("#tile4").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper)
-            var los_456_4 = !$("#tile4").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor)
-            var win_456_5 = !$("#tile5").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile6").hasClass(pepper)
-            var los_456_5 = !$("#tile5").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile6").hasClass(visitor)
-            var win_456_6 = !$("#tile6").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            var los_456_6 = !$("#tile6").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_456_4 = $("#tile4").hasClass('available') && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper)
+            var los_456_4 = $("#tile4").hasClass('available') && $("#tile5").hasClass(visitor) && $("#tile6").hasClass(visitor)
+            var win_456_5 = $("#tile5").hasClass('available') && $("#tile4").hasClass(pepper) && $("#tile6").hasClass(pepper)
+            var los_456_5 = $("#tile5").hasClass('available') && $("#tile4").hasClass(visitor) && $("#tile6").hasClass(visitor)
+            var win_456_6 = $("#tile6").hasClass('available') && $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_456_6 = $("#tile6").hasClass('available') && $("#tile4").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
-            var win_789_7 = !$("#tile7").hasClass('disable') && $("#tile8").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            var los_789_7 = !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            var win_789_8 = !$("#tile8").hasClass('disable') && $("#tile7").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            var los_789_8 = !$("#tile8").hasClass('disable') && $("#tile7").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            var win_789_9 = !$("#tile9").hasClass('disable') && $("#tile7").hasClass(pepper) && $("#tile8").hasClass(pepper)
-            var los_789_9 = !$("#tile9").hasClass('disable') && $("#tile7").hasClass(visitor) && $("#tile8").hasClass(visitor)
+            var win_789_7 = $("#tile7").hasClass('available') && $("#tile8").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_789_7 = $("#tile7").hasClass('available') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_789_8 = $("#tile8").hasClass('available') && $("#tile7").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_789_8 = $("#tile8").hasClass('available') && $("#tile7").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_789_9 = $("#tile9").hasClass('available') && $("#tile7").hasClass(pepper) && $("#tile8").hasClass(pepper)
+            var los_789_9 = $("#tile9").hasClass('available') && $("#tile7").hasClass(visitor) && $("#tile8").hasClass(visitor)
 
-            var win_147_1 = !$("#tile1").hasClass('disable') && $("#tile4").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            var los_147_1 = !$("#tile1").hasClass('disable') && $("#tile4").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            var win_147_4 = !$("#tile4").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            var los_147_4 = !$("#tile4").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            var win_147_7 = !$("#tile7").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile4").hasClass(pepper)
-            var los_147_7 = !$("#tile7").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile4").hasClass(visitor)
+            var win_147_1 = $("#tile1").hasClass('available') && $("#tile4").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_147_1 = $("#tile1").hasClass('available') && $("#tile4").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_147_4 = $("#tile4").hasClass('available') && $("#tile1").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_147_4 = $("#tile4").hasClass('available') && $("#tile1").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_147_7 = $("#tile7").hasClass('available') && $("#tile1").hasClass(pepper) && $("#tile4").hasClass(pepper)
+            var los_147_7 = $("#tile7").hasClass('available') && $("#tile1").hasClass(visitor) && $("#tile4").hasClass(visitor)
 
-            var win_258_2 = !$("#tile2").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile8").hasClass(pepper)
-            var los_258_2 = !$("#tile2").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile8").hasClass(visitor)
-            var win_258_5 = !$("#tile5").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile8").hasClass(pepper)
-            var los_258_5 = !$("#tile5").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile8").hasClass(visitor)
-            var win_258_8 = !$("#tile8").hasClass('disable') && $("#tile2").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            var los_258_8 = !$("#tile8").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_258_2 = $("#tile2").hasClass('available') && $("#tile5").hasClass(pepper) && $("#tile8").hasClass(pepper)
+            var los_258_2 = $("#tile2").hasClass('available') && $("#tile5").hasClass(visitor) && $("#tile8").hasClass(visitor)
+            var win_258_5 = $("#tile5").hasClass('available') && $("#tile2").hasClass(pepper) && $("#tile8").hasClass(pepper)
+            var los_258_5 = $("#tile5").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile8").hasClass(visitor)
+            var win_258_8 = $("#tile8").hasClass('available') && $("#tile2").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_258_8 = $("#tile8").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
-            var win_369_3 = !$("#tile3").hasClass('disable') && $("#tile6").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            var los_369_3 = !$("#tile3").hasClass('disable') && $("#tile6").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            var win_369_6 = !$("#tile6").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            var los_369_6 = !$("#tile6").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            var win_369_9 = !$("#tile9").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile6").hasClass(pepper)
-            var los_369_9 = !$("#tile9").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile6").hasClass(visitor)
+            var win_369_3 = $("#tile3").hasClass('available') && $("#tile6").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_369_3 = $("#tile3").hasClass('available') && $("#tile6").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_369_6 = $("#tile6").hasClass('available') && $("#tile3").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_369_6 = $("#tile6").hasClass('available') && $("#tile3").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_369_9 = $("#tile9").hasClass('available') && $("#tile3").hasClass(pepper) && $("#tile6").hasClass(pepper)
+            var los_369_9 = $("#tile9").hasClass('available') && $("#tile3").hasClass(visitor) && $("#tile6").hasClass(visitor)
 
-            var win_159_1 = !$("#tile1").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            var los_159_1 = !$("#tile1").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            var win_159_5 = !$("#tile5").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile9").hasClass(pepper)
-            var los_159_5 = !$("#tile5").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile9").hasClass(visitor)
-            var win_159_9 = !$("#tile9").hasClass('disable') && $("#tile1").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            var los_159_9 = !$("#tile9").hasClass('disable') && $("#tile1").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_159_1 = $("#tile1").hasClass('available') && $("#tile5").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_159_1 = $("#tile1").hasClass('available') && $("#tile5").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_159_5 = $("#tile5").hasClass('available') && $("#tile1").hasClass(pepper) && $("#tile9").hasClass(pepper)
+            var los_159_5 = $("#tile5").hasClass('available') && $("#tile1").hasClass(visitor) && $("#tile9").hasClass(visitor)
+            var win_159_9 = $("#tile9").hasClass('available') && $("#tile1").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_159_9 = $("#tile9").hasClass('available') && $("#tile1").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
-            var win_357_3 = !$("#tile3").hasClass('disable') && $("#tile5").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            var los_357_3 = !$("#tile3").hasClass('disable') && $("#tile5").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            var win_357_5 = !$("#tile5").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile7").hasClass(pepper)
-            var los_357_5 = !$("#tile5").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile7").hasClass(visitor)
-            var win_357_7 = !$("#tile7").hasClass('disable') && $("#tile3").hasClass(pepper) && $("#tile5").hasClass(pepper)
-            var los_357_7 = !$("#tile7").hasClass('disable') && $("#tile3").hasClass(visitor) && $("#tile5").hasClass(visitor)
+            var win_357_3 = $("#tile3").hasClass('available') && $("#tile5").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_357_3 = $("#tile3").hasClass('available') && $("#tile5").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_357_5 = $("#tile5").hasClass('available') && $("#tile3").hasClass(pepper) && $("#tile7").hasClass(pepper)
+            var los_357_5 = $("#tile5").hasClass('available') && $("#tile3").hasClass(visitor) && $("#tile7").hasClass(visitor)
+            var win_357_7 = $("#tile7").hasClass('available') && $("#tile3").hasClass(pepper) && $("#tile5").hasClass(pepper)
+            var los_357_7 = $("#tile7").hasClass('available') && $("#tile3").hasClass(visitor) && $("#tile5").hasClass(visitor)
 
             // Empty situation
-            var all_tiles_empty =
-                !($("#tile1").hasClass('disable') || $("#tile2").hasClass('disable') || $("#tile3").hasClass('disable') ||
-                $("#tile4").hasClass('disable') || $("#tile5").hasClass('disable') || $("#tile6").hasClass('disable') ||
-                $("#tile7").hasClass('disable') || $("#tile8").hasClass('disable') || $("#tile9").hasClass('disable'))
+            var all_tiles_empty = getAvailableTiles().length == 9
 
             // Tactical win situations
             // TODO
             //// Arrow
             var arr_1 =
-                ((!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(visitor) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper))
+                (($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass(visitor) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass(pepper))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(visitor) && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper)))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(visitor) && $("#tile8").hasClass('available') && $("#tile9").hasClass(pepper)))
 
             var arr_3 =
-                (($("#tile1").hasClass(visitor) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                (($("#tile1").hasClass(visitor) && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(visitor)))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass('available') && $("#tile9").hasClass(visitor)))
 
             var arr_7 =
-                (($("#tile1").hasClass(visitor) && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                (($("#tile1").hasClass(visitor) && $("#tile2").hasClass('available') && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(visitor)))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass(visitor)))
 
             var arr_9 =
-                (($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(visitor) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                (($("#tile1").hasClass(pepper) && $("#tile2").hasClass('available') && $("#tile3").hasClass(visitor) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                ($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(visitor) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable')))
+                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(visitor) && $("#tile8").hasClass('available') && $("#tile9").hasClass('available')))
 
             //// B&W
             var baw_1 =
-                ((!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && $("#tile8").hasClass(visitor) && !$("#tile9").hasClass('disable'))
+                (($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass(visitor) && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
                 $("#tile7").hasClass(pepper) && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(pepper))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(pepper)))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(pepper)))
 
             var baw_3 =
-                (($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                (($("#tile1").hasClass(pepper) && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(pepper))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(pepper))
                 ||
-                ($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass(pepper))
                 ||
-                ($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && $("#tile8").hasClass(visitor) && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass(visitor) && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
                 $("#tile7").hasClass(pepper) && $("#tile8").hasClass(visitor) && $("#tile9").hasClass(pepper)))
 
             var baw_7 =
-                ((!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper))
+                (($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass(pepper))
                 ||
-                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(visitor) && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass(pepper))
                 ||
-                ($("#tile1").hasClass(pepper) && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && $("#tile9").hasClass(pepper))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass(pepper))
                 ||
                 ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable')))
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available')))
 
             var baw_9 =
-                ((!$("#tile1").hasClass('disable') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                (($("#tile1").hasClass('available') && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && $("#tile3").hasClass(pepper) &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && $("#tile8").hasClass(visitor) && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass(pepper) &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass(visitor) && $("#tile9").hasClass('available'))
                 ||
-                (!$("#tile1").hasClass('disable') && !$("#tile2").hasClass('disable') && !$("#tile3").hasClass('disable') &&
-                !$("#tile4").hasClass('disable') && !$("#tile5").hasClass('disable') && $("#tile6").hasClass(visitor) &&
-                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                ($("#tile1").hasClass('available') && $("#tile2").hasClass('available') && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass('available') && $("#tile5").hasClass('available') && $("#tile6").hasClass(visitor) &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
                 ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass(pepper) &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                !$("#tile7").hasClass('disable') && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable'))
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass('available') && $("#tile8").hasClass('available') && $("#tile9").hasClass('available'))
                 ||
-                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(visitor) && !$("#tile3").hasClass('disable') &&
-                $("#tile4").hasClass(visitor) && !$("#tile5").hasClass('disable') && !$("#tile6").hasClass('disable') &&
-                $("#tile7").hasClass(pepper) && !$("#tile8").hasClass('disable') && !$("#tile9").hasClass('disable')))
+                ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(visitor) && $("#tile3").hasClass('available') &&
+                $("#tile4").hasClass(visitor) && $("#tile5").hasClass('available') && $("#tile6").hasClass('available') &&
+                $("#tile7").hasClass(pepper) && $("#tile8").hasClass('available') && $("#tile9").hasClass('available')))
 
             //// Zorro
             // 271
@@ -314,7 +313,7 @@ $(document).ready(function() {
             else if (baw_9) to_play = 9
 
             // Play center
-            else if (!$("#tile5").hasClass('disable')){
+            else if ($("#tile5").hasClass('available')){
                 to_play = 5
             }
 
@@ -327,7 +326,8 @@ $(document).ready(function() {
 
             // PLAY
             $("#tile" + to_play).text(pepper)
-            $("#tile" + to_play).addClass('disable ' + pepper + ' btn-warning')
+            $("#tile" + to_play).addClass(pepper + ' btn-warning')
+            $("#tile" + to_play).removeClass('available')
             count++
             if ($("#tile1").hasClass(pepper) && $("#tile2").hasClass(pepper) && $("#tile3").hasClass(pepper) ||
                 $("#tile4").hasClass(pepper) && $("#tile5").hasClass(pepper) && $("#tile6").hasClass(pepper) ||
@@ -351,20 +351,20 @@ $(document).ready(function() {
     function getAvailableTiles() {
         var availables = []
         for (var i = 1; i < 10; i++) {
-            if (!$("#tile" + i).hasClass('disable')) availables.push(i)
+            if ($("#tile" + i).hasClass('available')) availables.push(i)
         }
         return availables
     }
 
     function popMessage(message) {
-        $("#game li").addClass('disable')
+        $("#game li").removeClass('available')
         $('#game-messages-text').html(message)
         $('#game-messages').show()
     }
 
-    function endOfMatch() {
+    function startMatch() {
         $("#game li").text("+")
-        $("#game li").removeClass('disable')
+        $("#game li").addClass('available')
         $("#game li").removeClass(visitor)
         $("#game li").removeClass(pepper)
         $("#game li").removeClass('btn-primary')
@@ -376,12 +376,12 @@ $(document).ready(function() {
 
     $('#game-messages-button').click(function () {
         $('#game-messages').hide()
-        endOfMatch()
+        startMatch()
     });
 
     $("#reset").click(function () {
         $('#game-messages').hide()
-        endOfMatch()
+        startMatch()
         $('#visitor_win').text("0")
         $('#pepper_win').text("0")
     });

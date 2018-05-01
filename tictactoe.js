@@ -246,8 +246,8 @@ $(document).ready(function() {
             //// Zorro
             // 271
 
-            /// SCH style
-            // ???
+            /// Rainbow
+            // 156
 
             // DECIDE WHAT TO PLAY
             var to_play; // Tile number to play
